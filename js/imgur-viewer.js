@@ -69,10 +69,16 @@ var imgurViewer = {
       this.$images.empty();
       for (var i = 0; i < result.length; i++) {
         this.$images.append(
-          $("<li />", {
-            // text: JSON.stringify(result[i])
-            text: this.makeThumbnailLink(result[i].link, "b")
-          })
+          $("<li />").append(
+            $("<a />", {
+              href: result[i].link
+            }).append(
+              $("<img />", {
+                src: this.makeThumbnailLink(result[i].link, "m"),
+                alt: result[i].id
+              })
+            )
+          )
         );
       }
     }).bind(this));
