@@ -32,14 +32,48 @@ var imgurClient = {
 
 var imgurViewer = {
   client: imgurClient,
-  init: function($, base_url, client_id){
+  $: null,
+  $images: null,
+
+  init: function($, base_url, client_id, imagesId){
+    this.$ = $;
     this.client.init($, base_url, client_id);
-    this.client.accountImages("yuu4", 0, function(data, textStatus, jqXHR){
+    this.$images = this.$("#" + imagesId);
+
+    if (! this.$images) {
+      console.log("Images tag not found");
+      return;
+    }
+
+    this.$(window).bind("hashchange", this.onHashChange.bind(this));
+    this.onHashChange();
+  },
+
+  onHashChange: function(){
+    var hash = (window.content.location.hash || "").replace(/^#/, "");
+    console.log(hash);
+    if (! hash) {
+      console.log("no hash!");
+      return;
+    }
+
+    var splittedHash = hash.split("/");
+    var account = splittedHash[0];
+
+    this.client.accountImages(account, 0, (function(data, textStatus, jqXHR){
       console.log(data);
       console.log(textStatus);
       console.log(jqXHR);
-      done && done(data.data);
-      console.log(array);
-    });
+      var result = data.data
+      console.log(result);
+      this.$images.empty();
+      for (var i = 0; i < result.length; i++) {
+        this.$images.append(
+          $("<li />", {
+            text: JSON.stringify(result[i])
+          })
+        );
+      }
+    }).bind(this));
   }
 };
