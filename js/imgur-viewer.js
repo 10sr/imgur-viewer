@@ -34,11 +34,15 @@ var imgurViewer = {
   client: imgurClient,
   $: null,
   $images: null,
+  $accountText: null,
+  $accountSubmit: null,
 
-  init: function($, base_url, client_id, imagesId){
+  init: function($, base_url, client_id, imagesId, accountTextId, accountSubmitId){
     this.$ = $;
     this.client.init($, base_url, client_id);
     this.$images = this.$("#" + imagesId);
+    this.$accountSubmit = this.$("#" + accountSubmitId);
+    this.$accountText = this.$("#" + accountTextId);
 
     if (! this.$images) {
       console.log("Images tag not found");
@@ -47,6 +51,23 @@ var imgurViewer = {
 
     this.$(window).bind("hashchange", this.onHashChange.bind(this));
     this.onHashChange();
+
+    this.$accountText.bind("keypress", (function(e){
+      if (e.keyCode === 13) {
+        this.changeHash(this.$accountText.val());
+        return;
+      }
+    }).bind(this));
+    this.$accountSubmit.bind("click", (function(){
+        this.changeHash(this.$accountText.val());
+        return;
+    }).bind(this));
+  },
+
+  changeHash: function(text){
+    console.log(text);
+    window.location.hash = text;
+    return;
   },
 
   onHashChange: function(){
@@ -58,6 +79,8 @@ var imgurViewer = {
       return;
     }
 
+    this.$images.empty();
+
     var splittedHash = hash.split("/");
     var account = splittedHash[0];
 
@@ -67,7 +90,6 @@ var imgurViewer = {
       console.log(jqXHR);
       var result = data.data
       console.log(result);
-      this.$images.empty();
       for (var i = 0; i < result.length; i++) {
         this.$images.append(
           $("<li />").append(

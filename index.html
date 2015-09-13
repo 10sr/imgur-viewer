@@ -11,13 +11,17 @@
     <script type="text/javascript">
       var IMGUR_CLIENT_ID = "c59da2997a74ba9";
       $(function(){
-        imgurViewer.init($, "https://api.imgur.com/3/", IMGUR_CLIENT_ID,
-                         "imgur-viewer-images");
+      imgurViewer.init($, "https://api.imgur.com/3/", IMGUR_CLIENT_ID,
+      "imgur-viewer-images", "imgur-viewer-account-text", "imgur-viewer-account-submit");
       })
     </script>
   </head>
   <body>
-    <a href="#yuu4">yuu4</a>
+    <form>
+      <input type="text" name="dummy" style="position:absolute;visibility:hidden">
+      <input type="text" name="account" id="imgur-viewer-account-text"></input>
+      <button type="button" id="imgur-viewer-account-submit">Go</button>
+    </form>
     <ol id="imgur-viewer-images">
     </ol>
   </body>
