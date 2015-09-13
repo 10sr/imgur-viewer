@@ -36,6 +36,8 @@ var imgurViewer = {
   $accountText: null,
   $accountSubmit: null,
 
+  swipeboxClass: "swipebox-image",
+
   init: function($, base_url, client_id, imagesId, accountTextId, accountSubmitId){
     this.$ = $;
     this.client.init($, base_url, client_id);
@@ -89,7 +91,8 @@ var imgurViewer = {
             class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
           }).append(
             $("<a />", {
-              href: result[i].link
+              href: result[i].link,
+              class: this.swipeboxClass
             }).append(
               $("<img />", {
                 src: this.makeThumbnailLink(result[i].link, "b"),
@@ -100,6 +103,7 @@ var imgurViewer = {
           )
         );
       }
+      $("." + this.swipeboxClass).swipebox();
     }).bind(this));
   },
 
