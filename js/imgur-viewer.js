@@ -70,10 +70,15 @@ var imgurViewer = {
       for (var i = 0; i < result.length; i++) {
         this.$images.append(
           $("<li />", {
-            text: JSON.stringify(result[i])
+            // text: JSON.stringify(result[i])
+            text: this.makeThumbnailLink(result[i].link, "b")
           })
         );
       }
     }).bind(this));
+  },
+
+  makeThumbnailLink: function(url, suffix){
+    return url.replace(/\/([^.]+)(\.[^\/]*)$/, "/$1" + suffix + "$2");
   }
 };
