@@ -50,7 +50,8 @@ var imgurViewer = {
   },
 
   onHashChange: function(){
-    var hash = (window.content.location.hash || "").replace(/^#/, "");
+    var hash = this.$.param.fragment();
+    //var hash = (window.content.location.hash || "").replace(/^#/, "");
     console.log(hash);
     if (! hash) {
       console.log("no hash!");
