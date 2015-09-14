@@ -15,6 +15,7 @@
       "imgur-viewer-images", "imgur-viewer-account-text", "imgur-viewer-account-submit");
       })
     </script>
+    <link rel="stylesheet" type="text/css" href="lib/css/simplegrid.css" />
   </head>
   <body>
     <form action="index.html">
@@ -22,7 +23,6 @@
       <input type="text" name="account" id="imgur-viewer-account-text" />
       <button type="button" id="imgur-viewer-account-submit">Go</button>
     </form>
-    <ol id="imgur-viewer-images">
-    </ol>
+    <div id="imgur-viewer-images" class="grid grid-pad" />
   </body>
 </html>
