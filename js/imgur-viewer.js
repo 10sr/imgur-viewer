@@ -77,6 +77,7 @@ var imgurViewer = {
 
     var hash = this.$.param.fragment();
     //var hash = (window.content.location.hash || "").replace(/^#/, "");
+    this.$accountText.val(hash);
     if (! hash) {
       return;
     }
