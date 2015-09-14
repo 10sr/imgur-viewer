@@ -92,17 +92,14 @@ var imgurViewer = {
       console.log(result);
       for (var i = 0; i < result.length; i++) {
         this.$images.append(
-          $("<div />", {
-            class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
+          $("<a />", {
+            class: "col-1-4 mobile-col-1-3 imgur-viewer-image",
+            href: result[i].link
           }).append(
-            $("<a />", {
-              href: result[i].link
-            }).append(
-              $("<img />", {
-                src: this.makeThumbnailLink(result[i].link, "b"),
-                alt: result[i].id
-              })
-            )
+            $("<img />", {
+              src: this.makeThumbnailLink(result[i].link, "b"),
+              alt: result[i].id
+            })
           )
         );
       }
