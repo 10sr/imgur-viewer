@@ -93,7 +93,7 @@ var imgurViewer = {
       for (var i = 0; i < result.length; i++) {
         this.$images.append(
           $("<div />", {
-            class: "col-3-12 mobile-col-1-3"
+            class: "col-3-12 mobile-col-1-3 imgur-viewer-image"
           }).append(
             $("<a />", {
               href: result[i].link
