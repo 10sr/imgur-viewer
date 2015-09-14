@@ -3,5 +3,9 @@
 }
 
 .imgur-viewer-image {
-    padding: 1%
+    padding: 1%;
+}
+
+body {
+    background-color: #fff;
 }
