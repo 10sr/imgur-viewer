@@ -3,11 +3,23 @@
     <title>imgur viewer</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="lib/css/simplegrid.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+  </head>
+  <body>
+    <form action="index.html">
+      <input type="text" name="dummy" style="position:absolute;visibility:hidden" />
+      <input type="text" name="account" id="imgur-viewer-account-text" />
+      <button type="button" id="imgur-viewer-account-submit">Go</button>
+    </form>
+    <div id="imgur-viewer-navigation"></div>
+    <div id="imgur-viewer-images" class="grid"></div>
+
+    <!-- Load scripts -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js">
     </script>
     <script type="text/javascript" src="lib/js/jquery.ba-bbq.min.js">
     </script>
-    <link rel="stylesheet" type="text/css" href="lib/css/simplegrid.css" />
 
     <script type="text/javascript" src="js/imgur-viewer.js">
     </script>
@@ -19,15 +31,5 @@
       "imgur-viewer-navigation");
       })
     </script>
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-  </head>
-  <body>
-    <form action="index.html">
-      <input type="text" name="dummy" style="position:absolute;visibility:hidden" />
-      <input type="text" name="account" id="imgur-viewer-account-text" />
-      <button type="button" id="imgur-viewer-account-submit">Go</button>
-    </form>
-    <div id="imgur-viewer-navigation"></div>
-    <div id="imgur-viewer-images" class="grid"></div>
   </body>
 </html>
