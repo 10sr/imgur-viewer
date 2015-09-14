@@ -37,6 +37,8 @@ var imgurViewer = {
   $accountSubmit: null,
   $navigation: null,
 
+  lightboxClass: "lightbox-images",
+
   init: function($, base_url, client_id,
                  imagesId, accountTextId, accountSubmitId, navigationId){
     this.$ = $;
@@ -99,7 +101,8 @@ var imgurViewer = {
             class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
           }).append(
             $("<a />", {
-              href: result[i].link
+              href: result[i].link,
+              "data-lightbox": this.lightboxClass
             }).append(
               $("<img />", {
                 src: this.makeThumbnailLink(result[i].link, "b"),
