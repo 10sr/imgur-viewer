@@ -96,9 +96,7 @@ var imgurViewer = {
             class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
           }).append(
             $("<a />", {
-              href: result[i].link,
-              width: "100%",
-              height: "100%"
+              href: result[i].link
             }).append(
               $("<img />", {
                 src: this.makeThumbnailLink(result[i].link, "b"),
