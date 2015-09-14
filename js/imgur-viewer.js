@@ -101,7 +101,9 @@ var imgurViewer = {
             class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
           }).append(
             $("<a />", {
-              href: result[i].link,
+              href: (isSmartPhone() ?
+                     this.makeThumbnailLink(result[i].link, "h") :
+                     result[i].link),
               class: this.swipeboxClass
             }).append(
               $("<img />", {
@@ -133,3 +135,12 @@ var imgurViewer = {
     return url.replace(/\/([^.]+)(\.[^\/]*)$/, "/$1" + suffix + "$2");
   }
 };
+
+
+// http://www.kens-web.com/2011/11/1344
+function isSmartPhone(){
+  return ((navigator.userAgent.indexOf('iPhone') > 0 &&
+           navigator.userAgent.indexOf('iPad') === -1) ||
+          navigator.userAgent.indexOf('iPod') > 0 ||
+          navigator.userAgent.indexOf('Android') > 0);
+}
