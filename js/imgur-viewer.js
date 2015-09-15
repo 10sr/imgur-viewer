@@ -108,7 +108,7 @@ var imgurViewer = {
             }).append(
               $("<img />", {
                 src: this.makeThumbnailLink(result[i].link, "b"),
-                alt: result[i].id,
+                alt: result[i].title || result[i].id,
                 width: "100%"
               })
             )
