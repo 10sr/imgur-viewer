@@ -58,17 +58,17 @@ var imgurViewer = {
 
     this.$accountText.bind("keypress", (function(e){
       if (e.keyCode === 13) {
-        this.changeHash(this.$accountText.val());
+        this.updateHash(this.$accountText.val());
         return;
       }
     }).bind(this));
     this.$accountSubmit.bind("click", (function(){
-        this.changeHash(this.$accountText.val());
+        this.updateHash(this.$accountText.val());
         return;
     }).bind(this));
   },
 
-  changeHash: function(text){
+  updateHash: function(text){
     window.location.hash = text;
     return;
   },
