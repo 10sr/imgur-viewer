@@ -95,6 +95,11 @@ var imgurViewer = {
 
     this.client.accountImages(account, page, (function(data, textStatus, jqXHR){
       var result = data.data;
+      this.$images.append($("<div />", {
+        class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
+      }).append($("<a />", {
+        href: "#yuu4/1"
+      }).text("<")));
       for (var i = 0; i < result.length; i++) {
         this.$images.append(
           $("<div />", {
