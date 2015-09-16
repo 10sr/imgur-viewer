@@ -102,7 +102,7 @@ var imgurViewer = {
         }).append($("<a />", {
           href: "#" + account
         }).append($("<img />", {
-          src: "img/aiga-left-arrow-bg.svg",
+          src: "img/mono-tab-left.svg",
           alt: "left"
         }))));
         // this.$navigation.append($("<a />", {
@@ -114,7 +114,7 @@ var imgurViewer = {
         }).append($("<a />", {
           href: "#" + account + "/" + (page - 1).toString()
         }).append($("<img />", {
-          src: "img/aiga-left-arrow-bg.svg",
+          src: "img/mono-tab-left.svg",
           alt: "left"
         }))));
         // this.$navigation.append($("<a />", {
@@ -151,7 +151,7 @@ var imgurViewer = {
       }).append($("<a />", {
         href: "#" + account + "/" + (page + 1).toString()
       }).append($("<img />", {
-        src: "img/aiga-right-arrow-bg.svg",
+        src: "img/mono-tab-right.svg",
         alt: "right"
       }))));
       // this.$navigation.append($("<a />", {
