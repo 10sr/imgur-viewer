@@ -35,18 +35,16 @@ var imgurViewer = {
   $images: null,
   $accountText: null,
   $accountSubmit: null,
-  $navigation: null,
 
   swipeboxClass: "swipebox-image",
 
   init: function($, base_url, client_id,
-                 imagesId, accountTextId, accountSubmitId, navigationId){
+                 imagesId, accountTextId, accountSubmitId){
     this.$ = $;
     this.client.init($, base_url, client_id);
     this.$images = this.$("#" + imagesId);
     this.$accountSubmit = this.$("#" + accountSubmitId);
     this.$accountText = this.$("#" + accountTextId);
-    this.$navigation = this.$("#" + navigationId);
 
     if (! this.$images) {
       // TODO: Notify dom Error
@@ -75,7 +73,6 @@ var imgurViewer = {
 
   onHashChange: function(){
     this.$images.empty();
-    this.$navigation.empty();
 
     var hash = this.$.param.fragment();
     //var hash = (window.content.location.hash || "").replace(/^#/, "");
@@ -95,6 +92,28 @@ var imgurViewer = {
 
     this.client.accountImages(account, page, (function(data, textStatus, jqXHR){
       var result = data.data;
+
+      if (page === 1) {
+        this.$images.append($("<div />", {
+          class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
+        }).append($("<a />", {
+          href: "#" + account
+        }).append($("<img />", {
+          src: "img/mono-tab-left.svg",
+          alt: "left"
+        }))));
+      } else if (page >= 1) {
+        this.$images.append($("<div />", {
+          class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
+        }).append($("<a />", {
+          href: "#" + account + "/" + (page - 1).toString()
+        }).append($("<img />", {
+          src: "img/mono-tab-left.svg",
+          alt: "left"
+        }))));
+      }
+
+
       for (var i = 0; i < result.length; i++) {
         this.$images.append(
           $("<div />", {
@@ -115,19 +134,17 @@ var imgurViewer = {
           )
         );
       }
+
       $("." + this.swipeboxClass).swipebox();
-      if (page === 1) {
-        this.$navigation.append($("<a />", {
-          href: "#" + account
-        }).text("<-"));
-      } else if (page >= 1) {
-        this.$navigation.append($("<a />", {
-          href: "#" + account + "/" + (page - 1).toString(),
-        }).text("<-"));
-      }
-      this.$navigation.append($("<a />", {
-        href: "#" + account + "/" + (page + 1).toString(),
-      }).text("->"));
+
+      this.$images.append($("<div />", {
+        class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
+      }).append($("<a />", {
+        href: "#" + account + "/" + (page + 1).toString()
+      }).append($("<img />", {
+        src: "img/mono-tab-right.svg",
+        alt: "right"
+      }))));
     }).bind(this));
   },
 

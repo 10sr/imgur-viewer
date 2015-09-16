@@ -13,7 +13,6 @@
       <input type="text" name="account" id="imgur-viewer-account-text" />
       <button type="button" id="imgur-viewer-account-submit">Go</button>
     </form>
-    <div id="imgur-viewer-navigation"></div>
     <div id="imgur-viewer-images" class="grid"></div>
 
     <!-- Load scripts -->
@@ -30,8 +29,7 @@
       var IMGUR_CLIENT_ID = "c59da2997a74ba9";
       $(function(){
       imgurViewer.init($, "https://api.imgur.com/3/", IMGUR_CLIENT_ID,
-      "imgur-viewer-images", "imgur-viewer-account-text", "imgur-viewer-account-submit",
-      "imgur-viewer-navigation");
+      "imgur-viewer-images", "imgur-viewer-account-text", "imgur-viewer-account-submit");
       })
     </script>
   </body>
