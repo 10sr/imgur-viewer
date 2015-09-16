@@ -95,11 +95,34 @@ var imgurViewer = {
 
     this.client.accountImages(account, page, (function(data, textStatus, jqXHR){
       var result = data.data;
-      this.$images.append($("<div />", {
-        class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
-      }).append($("<a />", {
-        href: "#yuu4/1"
-      }).text("<")));
+
+      if (page === 1) {
+        this.$images.append($("<div />", {
+          class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
+        }).append($("<a />", {
+          href: "#" + account
+        }).append($("<img />", {
+          src: "img/aiga-left-arrow-bg.svg",
+          alt: "left"
+        }))));
+        // this.$navigation.append($("<a />", {
+        //   href: "#" + account
+        // }).text("<-"));
+      } else if (page >= 1) {
+        this.$images.append($("<div />", {
+          class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
+        }).append($("<a />", {
+          href: "#" + account + "/" + (page - 1).toString()
+        }).append($("<img />", {
+          src: "img/aiga-left-arrow-bg.svg",
+          alt: "left"
+        }))));
+        // this.$navigation.append($("<a />", {
+        //   href: "#" + account + "/" + (page - 1).toString()
+        // }).text("<-"));
+      }
+
+
       for (var i = 0; i < result.length; i++) {
         this.$images.append(
           $("<div />", {
@@ -120,19 +143,20 @@ var imgurViewer = {
           )
         );
       }
+
       $("." + this.swipeboxClass).swipebox();
-      if (page === 1) {
-        this.$navigation.append($("<a />", {
-          href: "#" + account
-        }).text("<-"));
-      } else if (page >= 1) {
-        this.$navigation.append($("<a />", {
-          href: "#" + account + "/" + (page - 1).toString(),
-        }).text("<-"));
-      }
-      this.$navigation.append($("<a />", {
-        href: "#" + account + "/" + (page + 1).toString(),
-      }).text("->"));
+
+      this.$images.append($("<div />", {
+        class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
+      }).append($("<a />", {
+        href: "#" + account + "/" + (page + 1).toString()
+      }).append($("<img />", {
+        src: "img/aiga-right-arrow-bg.svg",
+        alt: "right"
+      }))));
+      // this.$navigation.append($("<a />", {
+      //   href: "#" + account + "/" + (page + 1).toString()
+      // }).text("->"));
     }).bind(this));
   },
 
