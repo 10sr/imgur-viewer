@@ -35,18 +35,16 @@ var imgurViewer = {
   $images: null,
   $accountText: null,
   $accountSubmit: null,
-  $navigation: null,
 
   swipeboxClass: "swipebox-image",
 
   init: function($, base_url, client_id,
-                 imagesId, accountTextId, accountSubmitId, navigationId){
+                 imagesId, accountTextId, accountSubmitId){
     this.$ = $;
     this.client.init($, base_url, client_id);
     this.$images = this.$("#" + imagesId);
     this.$accountSubmit = this.$("#" + accountSubmitId);
     this.$accountText = this.$("#" + accountTextId);
-    this.$navigation = this.$("#" + navigationId);
 
     if (! this.$images) {
       // TODO: Notify dom Error
@@ -75,7 +73,6 @@ var imgurViewer = {
 
   onHashChange: function(){
     this.$images.empty();
-    this.$navigation.empty();
 
     var hash = this.$.param.fragment();
     //var hash = (window.content.location.hash || "").replace(/^#/, "");
@@ -105,9 +102,6 @@ var imgurViewer = {
           src: "img/mono-tab-left.svg",
           alt: "left"
         }))));
-        // this.$navigation.append($("<a />", {
-        //   href: "#" + account
-        // }).text("<-"));
       } else if (page >= 1) {
         this.$images.append($("<div />", {
           class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
@@ -117,9 +111,6 @@ var imgurViewer = {
           src: "img/mono-tab-left.svg",
           alt: "left"
         }))));
-        // this.$navigation.append($("<a />", {
-        //   href: "#" + account + "/" + (page - 1).toString()
-        // }).text("<-"));
       }
 
 
@@ -154,9 +145,6 @@ var imgurViewer = {
         src: "img/mono-tab-right.svg",
         alt: "right"
       }))));
-      // this.$navigation.append($("<a />", {
-      //   href: "#" + account + "/" + (page + 1).toString()
-      // }).text("->"));
     }).bind(this));
   },
 
