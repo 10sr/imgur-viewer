@@ -129,16 +129,19 @@ var imgurViewer = {
         }))));
       }
 
+      if (result.length > 0) {
+        this.$images.append($("<div />", {
+          class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
+        }).append($("<a />", {
+          href: "#" + account + "/" + (page + 1).toString()
+        }).append($("<img />", {
+          src: "img/mono-tab-right.svg",
+          alt: "right"
+        }))));
+      }
+
       $("." + this.swipeboxClass).swipebox();
 
-      this.$images.append($("<div />", {
-        class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
-      }).append($("<a />", {
-        href: "#" + account + "/" + (page + 1).toString()
-      }).append($("<img />", {
-        src: "img/mono-tab-right.svg",
-        alt: "right"
-      }))));
     }).bind(this));
   },
 
