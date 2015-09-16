@@ -115,24 +115,18 @@ var imgurViewer = {
 
 
       for (var i = 0; i < result.length; i++) {
-        this.$images.append(
-          $("<div />", {
-            class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
-          }).append(
-            $("<a />", {
-              href: (isSmartPhone() ?
-                     this.makeThumbnailLink(result[i].link, "h") :
-                     result[i].link),
-              class: this.swipeboxClass
-            }).append(
-              $("<img />", {
-                src: this.makeThumbnailLink(result[i].link, "b"),
-                alt: result[i].title || result[i].id,
-                width: "100%"
-              })
-            )
-          )
-        );
+        this.$images.append($("<div />", {
+          class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
+        }).append($("<a />", {
+          href: (isSmartPhone() ?
+                 this.makeThumbnailLink(result[i].link, "h") :
+                 result[i].link),
+          class: this.swipeboxClass
+        }).append($("<img />", {
+          src: this.makeThumbnailLink(result[i].link, "b"),
+          alt: result[i].title || result[i].id,
+          width: "100%"
+        }))));
       }
 
       $("." + this.swipeboxClass).swipebox();
