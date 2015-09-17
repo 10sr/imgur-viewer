@@ -9,15 +9,18 @@ var imgurClient = {
     this.client_id = client_id;
   },
 
-  accountImages: function(account, page, done, fail, always){
+  accountImages: function(account, page, perPage, done, fail, always){
     this._ajaxRequest("account/" + account + "/images/" + page.toString(),
-                      {},
+                      {
+                        perPage: perPage.toString()
+                      },
                       done, fail, always);
   },
 
   _ajaxRequest: function(endpoint, data, done, fail, always){
     this.$.ajax({
       url: this.base_url + endpoint,
+      data: data,
       dataType: "json",
       headers: {
         "Authorization": "Client-ID " + this.client_id
@@ -35,6 +38,8 @@ var imgurViewer = {
   $images: null,
   $accountText: null,
   $accountSubmit: null,
+
+  perPage: 50,
 
   swipeboxClass: "swipebox-image",
 
@@ -90,7 +95,7 @@ var imgurViewer = {
       page = 0;
     }
 
-    this.client.accountImages(account, page, (function(data, textStatus, jqXHR){
+    this.client.accountImages(account, page, this.perPage, (function(data, textStatus, jqXHR){
       var result = data.data;
 
       if (page === 1) {
@@ -129,7 +134,7 @@ var imgurViewer = {
         }))));
       }
 
-      if (result.length > 0) {
+      if (result.length >= this.perPage) {
         this.$images.append($("<div />", {
           class: "col-1-4 mobile-col-1-3 imgur-viewer-image"
         }).append($("<a />", {
