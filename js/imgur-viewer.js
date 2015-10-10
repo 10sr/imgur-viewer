@@ -1,3 +1,7 @@
+// TODO: Use query instead of account!
+
+var IMGUR_VIEWER_VERSION = "0.0.1"
+
 var imgurClient = {
   $: null,
   base_url: null,
@@ -57,7 +61,6 @@ var imgurViewer = {
     }
 
     this.$(window).bind("hashchange", this.onHashChange.bind(this));
-    this.onHashChange();
 
     this.$accountText.bind("keypress", (function(e){
       if (e.keyCode === 13) {
@@ -69,6 +72,14 @@ var imgurViewer = {
         this.updateHash(this.$accountText.val());
         return;
     }).bind(this));
+
+
+    var $version = $("#imgur-viewer-version")
+    if ($version) {
+      $version.text(IMGUR_VIEWER_VERSION);
+    }
+
+    this.onHashChange();
   },
 
   updateHash: function(text){
