@@ -37,6 +37,8 @@ var imgurClient = {
 }
 
 var imgurViewer = {
+  pageTitle: "%s | imgur-viewer",
+
   client: imgurClient,
   $: null,
   $images: null,
@@ -48,12 +50,14 @@ var imgurViewer = {
   swipeboxClass: "swipebox-image",
 
   init: function($, base_url, client_id,
-                 imagesId, accountTextId, accountSubmitId){
+                 imagesId, accountTextId, accountSubmitId,
+                 pageTitle){
     this.$ = $;
     this.client.init($, base_url, client_id);
     this.$images = this.$("#" + imagesId);
     this.$accountSubmit = this.$("#" + accountSubmitId);
     this.$accountText = this.$("#" + accountTextId);
+    this.pageTitle = pageTitle || this.pageTitle;
 
     if (! this.$images) {
       // TODO: Notify dom Error
@@ -89,6 +93,7 @@ var imgurViewer = {
 
   onHashChange: function(){
     this.$images.empty();
+    this.setTitle("");
 
     var hash = this.$.param.fragment();
     //var hash = (window.content.location.hash || "").replace(/^#/, "");
@@ -159,6 +164,12 @@ var imgurViewer = {
       $("." + this.swipeboxClass).swipebox();
 
     }).bind(this));
+
+    this.setTitle(hash);
+  },
+
+  setTitle: function(str){
+    document.title = this.pageTitle.replace("%s", str || "-");
   },
 
   makeThumbnailLink: function(url, suffix){
